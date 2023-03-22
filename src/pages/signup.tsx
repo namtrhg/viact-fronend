@@ -16,6 +16,7 @@ import React, { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/material.css'
 import { User } from 'types/schema'
+import { isValidPassword } from 'utils/validatePassword'
 
 export const theme = createTheme({
   components: {
@@ -36,6 +37,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState('')
   const [confirmpassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showPassRequirement, setShowPasswordRequirement] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -63,6 +65,7 @@ const SignupPage = () => {
     !phone ||
     !confirmpassword ||
     !password ||
+    !isValidPassword(password) ||
     !confirmpassword ||
     password !== confirmpassword
 
@@ -205,26 +208,31 @@ const SignupPage = () => {
                   specialLabel="Phone"
                   onChange={(phone) => setPhone(phone)}
                 />
-                <TextField
-                  inputProps={{
-                    style: {
-                      fontSize: 12,
-                      paddingTop: 18.5,
-                      paddingBottom: 18.5,
-                      paddingRight: 14,
-                      paddingLeft: 14,
-                      fontWeight: 400,
-                    },
-                  }}
-                  InputLabelProps={{ style: { fontSize: 14, fontWeight: 400 } }}
-                  type={showPassword ? 'text' : 'password'}
-                  color="error"
-                  fullWidth
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                  label="Password"
-                  variant="outlined"
-                />
+                <div className='relative'>
+                  <TextField
+                    inputProps={{
+                      style: {
+                        fontSize: 12,
+                        paddingTop: 18.5,
+                        paddingBottom: 18.5,
+                        paddingRight: 14,
+                        paddingLeft: 14,
+                        fontWeight: 400,
+                      },
+                    }}
+                    InputLabelProps={{ style: { fontSize: 14, fontWeight: 400 } }}
+                    type={showPassword ? 'text' : 'password'}
+                    color="error"
+                    fullWidth
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                    label="Password"
+                    variant="outlined"
+                    onFocus={() => setShowPasswordRequirement(true)}
+                    onBlur={() => setShowPasswordRequirement(false)}
+                  />
+                  {showPassRequirement && <div className='bg-white absolute top-11 text-sm p-2 shadow-lg z-50'>Must contain at least 8 characters, a combination of upper, lowercase, number and least one special character</div>}
+                </div>
                 <TextField
                   inputProps={{
                     style: {
