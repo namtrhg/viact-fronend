@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply appearance-none outline-none;
+}
+
+*:focus {
+  @apply focus:ring-0 focus:ring-offset-0;
+}
+
+.special-label {
+  @apply text-xs;
+}
