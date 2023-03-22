@@ -51,7 +51,7 @@ const SignupPage = () => {
     }
     try {
       await client.signUp(user)
-      alert('Tạo tài khoản thành công')
+      alert('Account create successfully')
     } catch (error: any) {
       alert(error)
     }
