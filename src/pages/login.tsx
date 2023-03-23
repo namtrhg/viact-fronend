@@ -85,7 +85,7 @@ const LoginForm = () => {
                   error={emailOrUsername === '' && !isFirstRender}
                 />
                 {emailOrUsername === '' && !isFirstRender && (
-                  <FormHelperText className="text-red-500">
+                  <FormHelperText error className="!text-red-500">
                     Username is a required field
                   </FormHelperText>
                 )}
@@ -113,7 +113,7 @@ const LoginForm = () => {
                   error={password === '' && !isFirstRender}
                 />
                 {password === '' && !isFirstRender && (
-                  <FormHelperText className="text-red-500">
+                  <FormHelperText error className="!text-red-500">
                     Password is a required field
                   </FormHelperText>
                 )}
