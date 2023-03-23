@@ -44,7 +44,7 @@ const LoginForm = () => {
     <div className="w-full h-screen bg-[#0b454f] relative overflow-hidden flex flex-col justify-center items-center font-robo">
       <img className="lg:w-full" src="/img/background.png" alt="background" />
       <Card
-        className="w-[350px] lg:w-[520px] h-[560px] lg:h-[616.7px] !bg-white absolute"
+        className="w-[350px] lg:w-[520px] h-[560px] lg:min-h-[616.7px] !bg-white absolute"
         sx={{ borderRadius: '20px' }}
       >
         <CardContent>
